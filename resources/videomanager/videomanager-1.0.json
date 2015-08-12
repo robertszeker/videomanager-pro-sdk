@@ -1,0 +1,17 @@
+{
+  "name": "videomanager service",
+  "apiVersion": "1.0",
+  "baseUrl": "https://vmpro.movingimage.com/vam/rest/vms/auth/",
+  "description": "videomanager methods",
+  "operations": {
+    "getVideoManagerList": {
+      "httpMethod": "GET",
+      "responseModel": "VideoManagerList"
+    }
+  },
+  "models": {
+    "VideoManagerList": {
+      "class": "array<Mi\\VideoManagerPro\\SDK\\Model\\VideoManager>"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "services": {
+    "security": {
+      "class": "Mi\\VideoManagerPro\\SDK\\Security\\SecurityService",
+      "description" : "/mi/videomanager-pro-sdk/security/security-1.0.json"
+    }
+  }
+}

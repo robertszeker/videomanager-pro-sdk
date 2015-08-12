@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+  <class name="Mi\VideoManagerPro\SDK\Common\Token\SecurityTokens" exclusion-policy="ALL">
+    <property name="accessToken" type="Mi\VideoManagerPro\SDK\Common\Token\AccessToken" since-version="1.0" expose="true" />
+    <property name="refreshToken" type="Mi\VideoManagerPro\SDK\Common\Token\RefreshToken" since-version="1.0" expose="true" />
+  </class>
+</serializer>

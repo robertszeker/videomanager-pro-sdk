@@ -1,0 +1,6 @@
+{
+  "includes": [
+    "/mi/videomanager-pro-sdk/security/service.json",
+    "/mi/videomanager-pro-sdk/videomanager/service.json"
+  ]
+}

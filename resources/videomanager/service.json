@@ -1,0 +1,8 @@
+{
+  "services": {
+    "videomanager": {
+      "class": "Mi\\VideoManagerPro\\SDK\\VideoManager\\VideoManagerService",
+      "description" : "/mi/videomanager-pro-sdk/videomanager/videomanager-1.0.json"
+    }
+  }
+}
