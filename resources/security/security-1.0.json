@@ -29,6 +29,11 @@
         "videoManagerId": {
           "location": "uri",
           "required": true
+        },
+        "Content-Type": {
+          "location" : "header",
+          "default" : "application/json",
+          "required" : true
         }
       },
       "responseModel": "SecurityTokens",
@@ -40,7 +45,7 @@
   },
   "models": {
     "SecurityTokens": {
-      "class": "Mi\\VideoManagerPro\\SDK\\Common\\Token\\SecurityTokens"
+      "class": "Mi\\VideoManagerPro\\SDK\\Common\\Token\\OAuth2"
     }
   }
 }

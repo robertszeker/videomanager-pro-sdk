@@ -7,7 +7,7 @@ namespace Mi\VideoManagerPro\SDK\Common\Token;
  *
  * @codeCoverageIgnore
  */
-class SecurityTokens implements SecurityTokensInterface
+class OAuth2 implements OAuth2Interface
 {
     private $accessToken;
     private $refreshToken;

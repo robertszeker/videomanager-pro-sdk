@@ -3,7 +3,6 @@
 namespace Mi\VideoManagerPro\SDK\Security;
 
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use Mi\VideoManagerPro\SDK\Common\Token\SecurityTokens;
 
 /**
  * @author Alexander Miehe <alexander.miehe@movingimage.com>

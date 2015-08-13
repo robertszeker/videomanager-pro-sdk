@@ -4,9 +4,8 @@ namespace Mi\VideoManagerPro\SDK\Common;
 
 use Mi\Guzzle\ServiceBuilder\ServiceFactoryInterface;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\AccessTokenAuthentication;
-use Mi\VideoManagerPro\SDK\Common\Subscriber\ProcessErrorResponse;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\RefreshTokenAuthentication;
-use Mi\VideoManagerPro\SDK\Common\Token\SecurityTokensInterface;
+use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
 
 /**
  * @author Alexander Miehe <alexander.miehe@movingimage.com>
@@ -14,18 +13,18 @@ use Mi\VideoManagerPro\SDK\Common\Token\SecurityTokensInterface;
 class ServiceFactory implements ServiceFactoryInterface
 {
     private $baseServiceFactory;
-    private $securityTokens;
+    private $oAuth2Token;
 
     /**
      * @param ServiceFactoryInterface $baseServiceFactory
-     * @param SecurityTokensInterface $securityTokens
+     * @param OAuth2Interface $oAuth2Token
      */
     public function __construct(
         ServiceFactoryInterface $baseServiceFactory,
-        SecurityTokensInterface $securityTokens
+        OAuth2Interface $oAuth2Token
     ) {
         $this->baseServiceFactory = $baseServiceFactory;
-        $this->securityTokens = $securityTokens;
+        $this->oAuth2Token = $oAuth2Token;
     }
 
     /**
@@ -34,12 +33,11 @@ class ServiceFactory implements ServiceFactoryInterface
     public function factory($config)
     {
         $service = $this->baseServiceFactory->factory($config);
-        $service->getEmitter()->attach(new ProcessErrorResponse());
         $service->getEmitter()->attach(
-            new AccessTokenAuthentication($service->getDescription(), $this->securityTokens->getAccessToken())
+            new AccessTokenAuthentication($service->getDescription(), $this->oAuth2Token->getAccessToken())
         );
         $service->getEmitter()->attach(
-            new RefreshTokenAuthentication($service->getDescription(), $this->securityTokens->getRefreshToken())
+            new RefreshTokenAuthentication($service->getDescription(), $this->oAuth2Token->getRefreshToken())
         );
 
         return $service;

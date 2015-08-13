@@ -4,11 +4,18 @@ namespace Mi\VideoManagerPro\SDK\Common\Token;
 
 /**
  * @author Steve Reichenbach <steve.reichenbach@movingimage.com>
+ *
+ * @codeCoverageIgnore
  */
-interface TokenInterface
+interface OAuth2Interface
 {
     /**
      * @return string
      */
-    public function getToken();
+    public function getAccessToken();
+
+    /**
+     * @return string
+     */
+    public function getRefreshToken();
 }
