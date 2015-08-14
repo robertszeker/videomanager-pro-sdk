@@ -1,7 +1,7 @@
 {
   "name": "security service",
   "apiVersion": "1.0",
-  "baseUrl": "https://vmpro.movingimage.com/vam/rest/vms/auth/",
+  "baseUrl": "/auth/",
   "description": "security methods in video manager",
   "operations": {
     "login": {
@@ -17,7 +17,7 @@
           "required": true
         }
       },
-      "responseModel": "SecurityTokens",
+      "responseModel": "OAuth2Token",
       "data": {
         "access-token-auth": false
       }
@@ -36,15 +36,15 @@
           "required" : true
         }
       },
-      "responseModel": "SecurityTokens",
+      "responseModel": "OAuth2Token",
       "data": {
         "access-token-auth": false,
-        "refresh-token-auth": true
+        "refresh-token-data": true
       }
     }
   },
   "models": {
-    "SecurityTokens": {
+    "OAuth2Token": {
       "class": "Mi\\VideoManagerPro\\SDK\\Common\\Token\\OAuth2"
     }
   }

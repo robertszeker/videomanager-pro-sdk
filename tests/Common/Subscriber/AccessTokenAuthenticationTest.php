@@ -9,6 +9,7 @@ use GuzzleHttp\Command\Guzzle\Operation;
 use GuzzleHttp\Message\Request;
 use GuzzleHttp\Query;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\AccessTokenAuthentication;
+use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
 use Mi\VideoManagerPro\SDK\Common\Token\TokenInterface;
 
 /**
@@ -26,7 +27,7 @@ class AccessTokenAuthenticationTest extends \PHPUnit_Framework_TestCase
     /**
      * @var AccessTokenAuthentication
      */
-    private $authentication;
+    private $subscriber;
 
     /**
      * @test
@@ -42,8 +43,7 @@ class AccessTokenAuthenticationTest extends \PHPUnit_Framework_TestCase
 
         $event->getCommand()->willReturn($this->command->reveal());
 
-        $this->authentication->onPrepared($event->reveal());
-
+        $this->subscriber->onPrepared($event->reveal());
     }
 
     /**
@@ -63,12 +63,9 @@ class AccessTokenAuthenticationTest extends \PHPUnit_Framework_TestCase
         $event->getRequest()->willReturn($request->reveal());
         $event->getCommand()->willReturn($this->command->reveal());
 
-        $this->accessToken->getToken()->willReturn('token');
+        $request->addHeader('Bearer', $this->accessToken)->shouldBeCalled();
 
-        $request->addHeader('Bearer', 'token')->shouldBeCalled();
-
-        $this->authentication->onPrepared($event->reveal());
-
+        $this->subscriber->onPrepared($event->reveal());
     }
 
     /**
@@ -76,7 +73,7 @@ class AccessTokenAuthenticationTest extends \PHPUnit_Framework_TestCase
      */
     public function getEvents()
     {
-        self::assertInternalType('array', $this->authentication->getEvents());
+        self::assertInternalType('array', $this->subscriber->getEvents());
     }
 
     protected function setUp()
@@ -84,10 +81,8 @@ class AccessTokenAuthenticationTest extends \PHPUnit_Framework_TestCase
         $this->command = $this->prophesize(Command::class);
         $this->description = $this->prophesize(Description::class);
         $this->operation = $this->prophesize(Operation::class);
-        $this->accessToken = $this->prophesize(TokenInterface::class);
+        $this->accessToken = 'access';
 
-        $this->authentication = new AccessTokenAuthentication(
-            $this->description->reveal(), $this->accessToken->reveal()
-        );
+        $this->subscriber = new AccessTokenAuthentication($this->description->reveal(), $this->accessToken);
     }
 }

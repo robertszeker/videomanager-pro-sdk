@@ -13,6 +13,16 @@ class OAuth2 implements OAuth2Interface
     private $refreshToken;
 
     /**
+     * @param $accessToken
+     * @param $refreshToken
+     */
+    public function __construct($accessToken, $refreshToken)
+    {
+        $this->accessToken  = $accessToken;
+        $this->refreshToken = $refreshToken;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getAccessToken()

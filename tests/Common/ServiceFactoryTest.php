@@ -8,9 +8,8 @@ use GuzzleHttp\Event\Emitter;
 use Mi\Guzzle\ServiceBuilder\ServiceFactoryInterface;
 use Mi\VideoManagerPro\SDK\Common\ServiceFactory;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\AccessTokenAuthentication;
-use Mi\VideoManagerPro\SDK\Common\Subscriber\ProcessErrorResponse;
-use Mi\VideoManagerPro\SDK\Common\Subscriber\RefreshTokenAuthentication;
-use Mi\VideoManagerPro\SDK\Common\Token\SecurityTokensInterface;
+use Mi\VideoManagerPro\SDK\Common\Subscriber\RefreshTokenData;
+use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
 use Prophecy\Argument;
 
 /**
@@ -20,15 +19,17 @@ use Prophecy\Argument;
  */
 class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
+    private $factoryConfig = [];
+
     /**
      * @test
      */
     public function factory()
     {
         $baseFactory = $this->prophesize(ServiceFactoryInterface::class);
-        $securityTokens = $this->prophesize(SecurityTokensInterface::class);
+        $oAuth2Token = $this->prophesize(OAuth2Interface::class);
 
-        $serviceFactory = new ServiceFactory($baseFactory->reveal(), $securityTokens->reveal());
+        $serviceFactory = new ServiceFactory($baseFactory->reveal(), $oAuth2Token->reveal());
         $client         = $this->prophesize(GuzzleClient::class);
         $emitter        = $this->prophesize(Emitter::class);
         $description    = $this->prophesize(Description::class);
@@ -36,14 +37,44 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $client->getEmitter()->willReturn($emitter->reveal());
         $client->getDescription()->willReturn($description->reveal());
 
-        $emitter->attach(Argument::type(ProcessErrorResponse::class))->shouldBeCalled();
         $emitter->attach(Argument::type(AccessTokenAuthentication::class))->shouldBeCalled();
-        $emitter->attach(Argument::type(RefreshTokenAuthentication::class))->shouldBeCalled();
+        $emitter->attach(Argument::type(RefreshTokenData::class))->shouldBeCalled();
 
-        $baseFactory->factory(['class' => GuzzleClient::class, 'description' => []])->willReturn($client->reveal());
+        $baseFactory->factory($this->factoryConfig)->willReturn($client->reveal());
 
-        $service = $serviceFactory->factory(['class' => GuzzleClient::class, 'description' => []]);
+        $service = $serviceFactory->factory($this->factoryConfig);
 
-        self::assertInstanceOf(GuzzleClient::class, $service);
+        $this->assertInstanceOf(GuzzleClient::class, $service);
+    }
+
+    /**
+     * @test
+     */
+    public function setBaseUrlPrefix()
+    {
+        $baseFactory = $this->prophesize(ServiceFactoryInterface::class);
+        $oAuth2Token = $this->prophesize(OAuth2Interface::class);
+
+        $serviceFactory = new ServiceFactory($baseFactory->reveal(), $oAuth2Token->reveal());
+        $client         = $this->prophesize(GuzzleClient::class);
+        $emitter        = $this->prophesize(Emitter::class);
+        $description    = $this->prophesize(Description::class);
+
+        $client->getEmitter()->willReturn($emitter->reveal());
+        $client->getDescription()->willReturn($description->reveal());
+
+        $emitter->attach(Argument::type(AccessTokenAuthentication::class))->shouldBeCalled();
+        $emitter->attach(Argument::type(RefreshTokenData::class))->shouldBeCalled();
+
+        $baseConfig = array_replace_recursive($this->factoryConfig, ['description' => ['baseUrl' => 'prefix/base']]);
+        $baseFactory->factory($baseConfig)->willReturn($client->reveal());
+
+        $serviceFactory->setBaseUrlPrefix('prefix/');
+        $serviceFactory->factory($this->factoryConfig);
+    }
+
+    protected function setUp()
+    {
+        $this->factoryConfig = ['class' => GuzzleClient::class, 'description' => ['baseUrl' => '/base']];
     }
 }

@@ -21,8 +21,10 @@ use Webmozart\KeyValueStore\ArrayStore;
  */
 class POCTest extends \PHPUnit_Framework_TestCase
 {
-    public function _()
+    public function test()
     {
+        $refreshToken = '';
+
         $repo = new PathMappingRepository(new ArrayStore());
         $repo->add('/mi/videomanager-pro-sdk', new DirectoryResource(__DIR__. '/../resources'));
 
@@ -38,8 +40,12 @@ class POCTest extends \PHPUnit_Framework_TestCase
             return $driver;
         }));
 
+        $oAuth2Token = new OAuth2('', $refreshToken);
+
+        $factory = new ServiceFactory(new BaseServiceFactory($serializer->build()), $oAuth2Token);
+        $factory->setBaseUrlPrefix('https://vmpro-qa.movingimage.com/vam/rest/vms');
+
         $loader = new JsonLoader($repo);
-        $factory = new ServiceFactory(new BaseServiceFactory($serializer->build()), new OAuth2());
         $builder = new ServiceBuilder($loader, $factory, '/mi/videomanager-pro-sdk/common/services.json');
 
         /** @var SecurityService $service */
@@ -47,6 +53,6 @@ class POCTest extends \PHPUnit_Framework_TestCase
         $response = $service->login('name', 'pw');
 //        $response = $service->refresh(21);
 
-        var_dump($response);
+        print_r($response);
     }
 }

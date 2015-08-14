@@ -3,6 +3,7 @@
 namespace Mi\VideoManagerPro\SDK\Security;
 
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use Mi\VideoManagerPro\SDK\Common\Token\OAuth2;
 
 /**
  * @author Alexander Miehe <alexander.miehe@movingimage.com>
@@ -15,7 +16,7 @@ class SecurityService extends GuzzleClient
      * @param string $username
      * @param string $password
      *
-     * @return SecurityTokens
+     * @return OAuth2
      */
     public function login($username, $password)
     {
@@ -25,7 +26,7 @@ class SecurityService extends GuzzleClient
     /**
      * @param int $videoManagerId
      *
-     * @return SecurityTokens
+     * @return OAuth2
      */
     public function refresh($videoManagerId)
     {
