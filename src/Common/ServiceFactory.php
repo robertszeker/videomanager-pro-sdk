@@ -14,7 +14,6 @@ class ServiceFactory implements ServiceFactoryInterface
 {
     private $baseServiceFactory;
     private $oAuth2Token;
-    private $baseUrlPrefix;
 
     /**
      * @param ServiceFactoryInterface $baseServiceFactory
@@ -33,8 +32,6 @@ class ServiceFactory implements ServiceFactoryInterface
      */
     public function factory($config)
     {
-        $this->addPrefixToBaseUrl($config);
-
         $service = $this->baseServiceFactory->factory($config);
         $service->getEmitter()->attach(
             new AccessTokenAuthentication($service->getDescription(), $this->oAuth2Token->getAccessToken())
@@ -44,25 +41,5 @@ class ServiceFactory implements ServiceFactoryInterface
         );
 
         return $service;
-    }
-
-    /**
-     * @param string $prefix
-     */
-    public function setBaseUrlPrefix($prefix)
-    {
-        $this->baseUrlPrefix = $prefix;
-    }
-
-    /**
-     * @param array $config
-     */
-    private function addPrefixToBaseUrl(array &$config)
-    {
-        if (!array_key_exists('baseUrl', $config['description'])) {
-            return;
-        }
-
-        $config['description']['baseUrl'] = rtrim($this->baseUrlPrefix, '/') . $config['description']['baseUrl'];
     }
 }

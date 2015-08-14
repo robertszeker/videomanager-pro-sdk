@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+  <class name="Mi\VideoManagerPro\SDK\Response\Security\Login" exclusion-policy="ALL">
+    <property name="accessToken" serialized-name="accessToken" type="string" since-version="1.0" expose="true" />
+    <property name="refreshToken" serialized-name="refreshToken" type="string" since-version="1.0" expose="true" />
+    <property name="videoManagerList" serialized-name="videoManagerList" type='VideoManagerList' since-version="1.0" expose="true">
+        <VideoManagerList><![CDATA["array<Mi\VideoManagerPro\SDK\Model\VideoManager>"]]></VideoManagerList>
+    </property>
+    <property name="validForVideoManager" serialized-name="validForVideoManager" type="integer" since-version="1.0" expose="true" />
+  </class>
+</serializer>

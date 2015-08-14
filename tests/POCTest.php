@@ -2,6 +2,7 @@
 
 namespace Mi\VideoManagerPro\SDK\Tests;
 
+use GuzzleHttp\Client;
 use JMS\Serializer\Builder\CallbackDriverFactory;
 use JMS\Serializer\Metadata\Driver\XmlDriver;
 use JMS\Serializer\SerializerBuilder;
@@ -23,6 +24,8 @@ class POCTest extends \PHPUnit_Framework_TestCase
 {
     public function test()
     {
+        $this->markTestSkipped('test is only for poc');
+
         $refreshToken = '';
 
         $repo = new PathMappingRepository(new ArrayStore());
@@ -31,7 +34,11 @@ class POCTest extends \PHPUnit_Framework_TestCase
         $driver = new XmlDriver(
             new PuliFileLocator(
                 $repo,
-                ['Mi\\VideoManagerPro\\SDK\\Common\\Token' => '/mi/videomanager-pro-sdk/serializer/']
+                [
+                    'Mi\\VideoManagerPro\\SDK\\Common\\Token' => '/mi/videomanager-pro-sdk/serializer',
+                    'Mi\\VideoManagerPro\\SDK\\Model' => '/mi/videomanager-pro-sdk/serializer',
+                    'Mi\\VideoManagerPro\\SDK\\Response\\Security' => '/mi/videomanager-pro-sdk/serializer',
+                ]
             )
         );
 
@@ -40,10 +47,10 @@ class POCTest extends \PHPUnit_Framework_TestCase
             return $driver;
         }));
 
+        $client = new Client(['base_url' => 'https://vmpro-qa.movingimage.com/']);
         $oAuth2Token = new OAuth2('', $refreshToken);
 
-        $factory = new ServiceFactory(new BaseServiceFactory($serializer->build()), $oAuth2Token);
-        $factory->setBaseUrlPrefix('https://vmpro-qa.movingimage.com/vam/rest/vms');
+        $factory = new ServiceFactory(new BaseServiceFactory($serializer->build(), $client), $oAuth2Token);
 
         $loader = new JsonLoader($repo);
         $builder = new ServiceBuilder($loader, $factory, '/mi/videomanager-pro-sdk/common/services.json');

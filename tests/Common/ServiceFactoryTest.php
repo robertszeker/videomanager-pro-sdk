@@ -19,8 +19,6 @@ use Prophecy\Argument;
  */
 class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    private $factoryConfig = [];
-
     /**
      * @test
      */
@@ -40,41 +38,11 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $emitter->attach(Argument::type(AccessTokenAuthentication::class))->shouldBeCalled();
         $emitter->attach(Argument::type(RefreshTokenData::class))->shouldBeCalled();
 
-        $baseFactory->factory($this->factoryConfig)->willReturn($client->reveal());
+        $factoryConfig = ['class' => GuzzleClient::class, 'description' => ['baseUrl' => '/base']];
+        $baseFactory->factory($factoryConfig)->willReturn($client->reveal());
 
-        $service = $serviceFactory->factory($this->factoryConfig);
+        $service = $serviceFactory->factory($factoryConfig);
 
         $this->assertInstanceOf(GuzzleClient::class, $service);
-    }
-
-    /**
-     * @test
-     */
-    public function setBaseUrlPrefix()
-    {
-        $baseFactory = $this->prophesize(ServiceFactoryInterface::class);
-        $oAuth2Token = $this->prophesize(OAuth2Interface::class);
-
-        $serviceFactory = new ServiceFactory($baseFactory->reveal(), $oAuth2Token->reveal());
-        $client         = $this->prophesize(GuzzleClient::class);
-        $emitter        = $this->prophesize(Emitter::class);
-        $description    = $this->prophesize(Description::class);
-
-        $client->getEmitter()->willReturn($emitter->reveal());
-        $client->getDescription()->willReturn($description->reveal());
-
-        $emitter->attach(Argument::type(AccessTokenAuthentication::class))->shouldBeCalled();
-        $emitter->attach(Argument::type(RefreshTokenData::class))->shouldBeCalled();
-
-        $baseConfig = array_replace_recursive($this->factoryConfig, ['description' => ['baseUrl' => 'prefix/base']]);
-        $baseFactory->factory($baseConfig)->willReturn($client->reveal());
-
-        $serviceFactory->setBaseUrlPrefix('prefix/');
-        $serviceFactory->factory($this->factoryConfig);
-    }
-
-    protected function setUp()
-    {
-        $this->factoryConfig = ['class' => GuzzleClient::class, 'description' => ['baseUrl' => '/base']];
     }
 }
