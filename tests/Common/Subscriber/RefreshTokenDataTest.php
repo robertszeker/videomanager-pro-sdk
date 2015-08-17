@@ -10,6 +10,7 @@ use GuzzleHttp\Message\Request;
 use GuzzleHttp\Query;
 use GuzzleHttp\Stream\Stream;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\RefreshTokenData;
+use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
 use Mi\VideoManagerPro\SDK\Common\Token\TokenInterface;
 use Prophecy\Argument;
 
@@ -54,7 +55,6 @@ class RefreshTokenDataTest extends \PHPUnit_Framework_TestCase
     {
         $event = $this->prophesize(PreparedEvent::class);
         $request = $this->prophesize(Request::class);
-        $query = $this->prophesize(Query::class);
 
         $this->command->getName()->willReturn('command');
 
@@ -83,8 +83,9 @@ class RefreshTokenDataTest extends \PHPUnit_Framework_TestCase
         $this->command = $this->prophesize(Command::class);
         $this->description = $this->prophesize(Description::class);
         $this->operation = $this->prophesize(Operation::class);
-        $this->refreshToken = 'refresh';
+        $this->refreshToken = $this->prophesize(OAuth2Interface::class);
+        $this->refreshToken->getRefreshToken()->willReturn('refresh');
 
-        $this->subscriber = new RefreshTokenData($this->description->reveal(), $this->refreshToken);
+        $this->subscriber = new RefreshTokenData($this->description->reveal(), $this->refreshToken->reveal());
     }
 }

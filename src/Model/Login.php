@@ -1,6 +1,6 @@
 <?php
 
-namespace Mi\VideoManagerPro\SDK\Response\Security;
+namespace Mi\VideoManagerPro\SDK\Model\Security;
 
 use Mi\VideoManagerPro\SDK\Common\Token\OAuth2;
 

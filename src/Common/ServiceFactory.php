@@ -34,10 +34,10 @@ class ServiceFactory implements ServiceFactoryInterface
     {
         $service = $this->baseServiceFactory->factory($config);
         $service->getEmitter()->attach(
-            new AccessTokenAuthentication($service->getDescription(), $this->oAuth2Token->getAccessToken())
+            new AccessTokenAuthentication($service->getDescription(), $this->oAuth2Token)
         );
         $service->getEmitter()->attach(
-            new RefreshTokenData($service->getDescription(), $this->oAuth2Token->getRefreshToken())
+            new RefreshTokenData($service->getDescription(), $this->oAuth2Token)
         );
 
         return $service;

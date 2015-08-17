@@ -11,7 +11,7 @@ use Mi\Guzzle\ServiceBuilder\ServiceBuilder;
 use Mi\Guzzle\ServiceBuilder\ServiceFactory as BaseServiceFactory;
 use Mi\Puli\Metadata\Driver\PuliFileLocator;
 use Mi\VideoManagerPro\SDK\Common\ServiceFactory;
-use Mi\VideoManagerPro\SDK\Common\Token\OAuth2;
+use Mi\VideoManagerPro\SDK\Model\OAuth2;
 use Mi\VideoManagerPro\SDK\Security\SecurityService;
 use Puli\Repository\PathMappingRepository;
 use Puli\Repository\Resource\DirectoryResource;
@@ -24,7 +24,7 @@ class POCTest extends \PHPUnit_Framework_TestCase
 {
     public function test()
     {
-        $this->markTestSkipped('test is only for poc');
+        self::markTestSkipped('test is only for poc');
 
         $refreshToken = '';
 
@@ -35,9 +35,7 @@ class POCTest extends \PHPUnit_Framework_TestCase
             new PuliFileLocator(
                 $repo,
                 [
-                    'Mi\\VideoManagerPro\\SDK\\Common\\Token' => '/mi/videomanager-pro-sdk/serializer',
                     'Mi\\VideoManagerPro\\SDK\\Model' => '/mi/videomanager-pro-sdk/serializer',
-                    'Mi\\VideoManagerPro\\SDK\\Response\\Security' => '/mi/videomanager-pro-sdk/serializer',
                 ]
             )
         );

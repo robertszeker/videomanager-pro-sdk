@@ -1,6 +1,8 @@
 <?php
 
-namespace Mi\VideoManagerPro\SDK\Common\Token;
+namespace Mi\VideoManagerPro\SDK\Model;
+
+use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
 
 /**
  * @author Steve Reichenbach <steve.reichenbach@movingimage.com>
