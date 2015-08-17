@@ -1,0 +1,42 @@
+{
+  "name": "mi/videomanager-pro-sdk",
+  "description": "SDK for the VideoManager Pro REST API",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "sdk",
+    "videomanager",
+    "videomanagerPro"
+  ],
+  "authors": [
+    {
+      "name": "Steve Reichenbach",
+      "email": "steve.reichenbach@movingimage.com"
+    }
+  ],
+  "minimum-stability": "beta",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "require": {
+    "mi/guzzle-service-builder": "~1.0",
+    "mi/metadata-puli-file-locator": "~1.0",
+    "webmozart/key-value-store": "^1.0@beta"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.7",
+    "symfony/filesystem": "^2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mi\\VideoManagerPro\\SDK\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mi\\VideoManagerPro\\SDK\\Tests\\": "tests/"
+    }
+  }
+}

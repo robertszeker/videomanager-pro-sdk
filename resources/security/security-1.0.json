@@ -1,0 +1,54 @@
+{
+  "name": "security service",
+  "apiVersion": "1.0",
+  "baseUrl": "vam/rest/vms/auth/",
+  "description": "security methods in video manager",
+  "operations": {
+    "login": {
+      "httpMethod": "POST",
+      "uri": "login",
+      "parameters": {
+        "username": {
+          "location": "json",
+          "required": true
+        },
+        "password": {
+          "location": "json",
+          "required": true
+        }
+      },
+      "responseModel": "Login",
+      "data": {
+        "access-token-auth": false
+      }
+    },
+    "refresh": {
+      "httpMethod": "POST",
+      "uri": "refresh/{videoManagerId}",
+      "parameters": {
+        "videoManagerId": {
+          "location": "uri",
+          "required": true
+        },
+        "Content-Type": {
+          "location" : "header",
+          "default" : "application/json",
+          "required" : true
+        }
+      },
+      "responseModel": "OAuth2Token",
+      "data": {
+        "access-token-auth": false,
+        "refresh-token-data": true
+      }
+    }
+  },
+  "models": {
+    "Login": {
+      "class": "Mi\\VideoManagerPro\\SDK\\Response\\Security\\Login"
+    },
+    "OAuth2Token": {
+      "class": "Mi\\VideoManagerPro\\SDK\\Common\\Token\\OAuth2"
+    }
+  }
+}
