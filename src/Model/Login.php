@@ -1,8 +1,6 @@
 <?php
 
-namespace Mi\VideoManagerPro\SDK\Response\Security;
-
-use Mi\VideoManagerPro\SDK\Common\Token\OAuth2;
+namespace Mi\VideoManagerPro\SDK\Model;
 
 /**
  * @author Steve Reichenbach <steve.reichenbach@movingimage.com>

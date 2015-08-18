@@ -5,6 +5,7 @@ namespace Mi\VideoManagerPro\SDK\Common\Subscriber;
 use GuzzleHttp\Command\Event\PreparedEvent;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Event\SubscriberInterface;
+use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
 
 /**
  * @author Alexander Miehe <alexander.miehe@movingimage.com>
@@ -16,9 +17,9 @@ class AccessTokenAuthentication implements SubscriberInterface
 
     /**
      * @param Description    $description
-     * @param string $accessToken
+     * @param OAuth2Interface $accessToken
      */
-    public function __construct(Description $description, $accessToken = null)
+    public function __construct(Description $description, OAuth2Interface $accessToken)
     {
         $this->description = $description;
         $this->accessToken = $accessToken;
@@ -34,15 +35,11 @@ class AccessTokenAuthentication implements SubscriberInterface
 
     public function onPrepared(PreparedEvent $event)
     {
-        if ($this->accessToken === null) {
-            return;
-        }
-
         $command   = $event->getCommand();
         $operation = $this->description->getOperation($command->getName());
 
         if ($operation->getData('access-token-auth') !== false) {
-            $event->getRequest()->addHeader('Bearer', $this->accessToken);
+            $event->getRequest()->addHeader('Bearer', $this->accessToken->getAccessToken());
         }
     }
 }

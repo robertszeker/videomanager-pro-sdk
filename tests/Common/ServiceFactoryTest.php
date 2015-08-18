@@ -43,6 +43,6 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 
         $service = $serviceFactory->factory($factoryConfig);
 
-        $this->assertInstanceOf(GuzzleClient::class, $service);
+        self::assertInstanceOf(GuzzleClient::class, $service);
     }
 }

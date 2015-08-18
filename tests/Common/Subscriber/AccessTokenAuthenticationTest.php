@@ -63,7 +63,7 @@ class AccessTokenAuthenticationTest extends \PHPUnit_Framework_TestCase
         $event->getRequest()->willReturn($request->reveal());
         $event->getCommand()->willReturn($this->command->reveal());
 
-        $request->addHeader('Bearer', $this->accessToken)->shouldBeCalled();
+        $request->addHeader('Bearer', 'access')->shouldBeCalled();
 
         $this->subscriber->onPrepared($event->reveal());
     }
@@ -81,8 +81,9 @@ class AccessTokenAuthenticationTest extends \PHPUnit_Framework_TestCase
         $this->command = $this->prophesize(Command::class);
         $this->description = $this->prophesize(Description::class);
         $this->operation = $this->prophesize(Operation::class);
-        $this->accessToken = 'access';
+        $this->accessToken = $this->prophesize(OAuth2Interface::class);
+        $this->accessToken->getAccessToken()->willReturn('access');
 
-        $this->subscriber = new AccessTokenAuthentication($this->description->reveal(), $this->accessToken);
+        $this->subscriber = new AccessTokenAuthentication($this->description->reveal(), $this->accessToken->reveal());
     }
 }
