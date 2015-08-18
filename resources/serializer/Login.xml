@@ -3,7 +3,7 @@
   <class name="Mi\VideoManagerPro\SDK\Model\Login" exclusion-policy="ALL">
     <property name="accessToken" serialized-name="accessToken" type="string" since-version="1.0" expose="true" />
     <property name="refreshToken" serialized-name="refreshToken" type="string" since-version="1.0" expose="true" />
-    <property name="videoManagerList" serialized-name="videoManagerList" type='VideoManagerList' since-version="1.0" expose="true">
+    <property name="videoManagerList" serialized-name="videoManagerList" since-version="1.0" expose="true">
         <type><![CDATA[array<Mi\VideoManagerPro\SDK\Model\VideoManager>]]></type>
     </property>
     <property name="validForVideoManager" serialized-name="validForVideoManager" type="integer" since-version="1.0" expose="true" />
