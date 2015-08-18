@@ -3,8 +3,8 @@
 namespace Mi\VideoManagerPro\SDK\Security;
 
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use Mi\VideoManagerPro\SDK\Common\Token\OAuth2;
-use Mi\VideoManagerPro\SDK\Response\Security\Login;
+use Mi\VideoManagerPro\SDK\Model\Login;
+use Mi\VideoManagerPro\SDK\Model\OAuth2;
 
 /**
  * @author Alexander Miehe <alexander.miehe@movingimage.com>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+  <class name="Mi\VideoManagerPro\SDK\Model\Video" exclusion-policy="ALL">
+    <property name="id" type="string" since-version="1.0" expose="true" />
+    <property name="title" type="string" since-version="1.0" expose="true" />
+    <property name="thumbnail" type="string" since-version="1.0" expose="true" />
+    <property name="description" type="string" since-version="1.0" expose="true" />
+    <property name="length" type="integer" since-version="1.0" expose="true" />
+    <property name="replacementCount" serialized-name="generation" type="integer" since-version="1.0" expose="true" />
+    <property name="createdDate" serialized-name="createdDate" since-version="1.0" expose="true">
+      <type><![CDATA[DateTime<'U'>]]></type>
+    </property>
+    <property name="uploadDate" serialized-name="uploadDate" since-version="1.0" expose="true">
+      <type><![CDATA[DateTime<'U'>]]></type>
+    </property>
+    <property name="customMetadata" serialized-name="customMetadata" type="array" since-version="1.0" expose="true" />
+
+  </class>
+</serializer>

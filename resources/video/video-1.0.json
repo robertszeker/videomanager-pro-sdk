@@ -1,0 +1,66 @@
+{
+  "name": "video service",
+  "apiVersion": "1.0",
+  "baseUrl": "v1/vms/",
+  "description": "video related methods in video manager pro",
+  "operations": {
+    "list": {
+      "httpMethod": "GET",
+      "uri": "{videoManagerId}/videos",
+      "parameters": {
+        "videoManagerId": {
+          "location": "uri",
+          "required": true
+        },
+        "channelId": {
+          "location": "query",
+          "sentAs": "channel_id",
+          "type" : "integer"
+        },
+        "offset": {
+          "location": "query",
+          "type" : "integer",
+          "default" : 0
+        },
+        "limit": {
+          "location": "query",
+          "type" : "integer",
+          "default": 50
+        },
+        "order": {
+          "location": "query",
+          "type" : "string",
+          "default" : "desc",
+          "enum" : ["desc", "asc"]
+        },
+        "orderProperty": {
+          "location": "query",
+          "type" : "string",
+          "sentAs": "order_property",
+          "default" : "created_date"
+        },
+        "includeCustomMetadata" : {
+          "type" : "string",
+          "location": "query",
+          "sentAs": "include_custom_metadata",
+          "default" : "false",
+          "enum" : ["true", "false"]
+        },
+        "Content-Type": {
+          "location" : "header",
+          "default" : "application/json",
+          "required" : true
+        }
+      },
+      "responseModel": "Videos",
+      "data": {
+        "access-token-auth": true
+      }
+    }
+  },
+  "models": {
+    "Videos": {
+      "class": "array<Mi\\VideoManagerPro\\SDK\\Model\\VideoList"
+    }
+  }
+}
