@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer>
+  <class name="Mi\VideoManagerPro\SDK\Model\VideoList" exclusion-policy="ALL">
+    <property name="total" type="integer" since-version="1.0" expose="true" />
+    <property name="videos" since-version="1.0" expose="true">
+      <type><![CDATA[array<Mi\VideoManagerPro\SDK\Model\Video>]]></type>
+    </property>
+  </class>
+</serializer>

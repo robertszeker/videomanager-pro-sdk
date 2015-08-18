@@ -63,7 +63,7 @@ class AccessTokenAuthenticationTest extends \PHPUnit_Framework_TestCase
         $event->getRequest()->willReturn($request->reveal());
         $event->getCommand()->willReturn($this->command->reveal());
 
-        $request->addHeader('Bearer', 'access')->shouldBeCalled();
+        $request->addHeader('Authorization', 'Bearer access')->shouldBeCalled();
 
         $this->subscriber->onPrepared($event->reveal());
     }

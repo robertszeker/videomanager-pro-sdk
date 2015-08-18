@@ -1,7 +1,7 @@
 {
   "name": "security service",
   "apiVersion": "1.0",
-  "baseUrl": "vam/rest/vms/auth/",
+  "baseUrl": "v1/vms/auth/",
   "description": "security methods in video manager",
   "operations": {
     "login": {
@@ -45,10 +45,10 @@
   },
   "models": {
     "Login": {
-      "class": "Mi\\VideoManagerPro\\SDK\\Response\\Security\\Login"
+      "class": "Mi\\VideoManagerPro\\SDK\\Model\\Login"
     },
     "OAuth2Token": {
-      "class": "Mi\\VideoManagerPro\\SDK\\Common\\Token\\OAuth2"
+      "class": "Mi\\VideoManagerPro\\SDK\\Model\\OAuth2"
     }
   }
 }

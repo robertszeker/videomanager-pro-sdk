@@ -39,7 +39,7 @@ class AccessTokenAuthentication implements SubscriberInterface
         $operation = $this->description->getOperation($command->getName());
 
         if ($operation->getData('access-token-auth') !== false) {
-            $event->getRequest()->addHeader('Bearer', $this->accessToken->getAccessToken());
+            $event->getRequest()->addHeader('Authorization', 'Bearer ' .$this->accessToken->getAccessToken());
         }
     }
 }
