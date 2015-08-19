@@ -60,7 +60,7 @@
   },
   "models": {
     "Videos": {
-      "class": "array<Mi\\VideoManagerPro\\SDK\\Model\\VideoList"
+      "class": "Mi\\VideoManagerPro\\SDK\\Model\\VideoList"
     }
   }
 }
