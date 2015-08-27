@@ -56,11 +56,38 @@
       "data": {
         "access-token-auth": true
       }
+    },
+    "get": {
+      "httpMethod": "GET",
+      "uri": "{videoManagerId}/videos/{videoId}",
+      "parameters": {
+        "videoManagerId": {
+          "location": "uri",
+          "required": true
+        },
+        "videoId": {
+          "location": "uri",
+          "required": true,
+          "type" : "string"
+        },
+        "Content-Type": {
+          "location" : "header",
+          "default" : "application/json",
+          "required" : true
+        }
+      },
+      "responseModel": "Video",
+      "data": {
+        "access-token-auth": true
+      }
     }
   },
   "models": {
     "Videos": {
       "class": "Mi\\VideoManagerPro\\SDK\\Model\\VideoList"
+    },
+    "Video": {
+      "class": "Mi\\VideoManagerPro\\SDK\\Model\\Video"
     }
   }
 }
