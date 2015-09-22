@@ -1,0 +1,32 @@
+{
+  "name": "channel service",
+  "apiVersion": "1.0",
+  "baseUrl": "v1/vms/",
+  "description": "channel related methods in video manager pro",
+  "operations": {
+    "list": {
+      "httpMethod": "GET",
+      "uri": "{videoManagerId}/channels",
+      "parameters": {
+        "videoManagerId": {
+          "location": "uri",
+          "required": true
+        },
+        "Content-Type": {
+          "location" : "header",
+          "default" : "application/json",
+          "required" : true
+        }
+      },
+      "responseModel": "Channels",
+      "data": {
+        "access-token-auth": true
+      }
+    }
+  },
+  "models": {
+    "Channels": {
+      "class": "Mi\\VideoManagerPro\\SDK\\Model\\ChannelTree"
+    }
+  }
+}
