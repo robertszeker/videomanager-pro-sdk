@@ -31,7 +31,7 @@ class ChannelTree
 
 
     /**
-     * @return ChannelTree
+     * @return ChannelTree[]
      */
     public function getChildren()
     {
