@@ -36,7 +36,7 @@ class Video
     }
 
     /**
-     * schema relative thumbnail url
+     * schema relative thumbnail url.
      *
      * @return string
      */
@@ -70,9 +70,9 @@ class Video
     }
 
     /**
-     * video length in seconds
+     * video length in seconds.
      *
-     * @return integer
+     * @return int
      */
     public function getLength()
     {
@@ -80,9 +80,9 @@ class Video
     }
 
     /**
-     * count how often the source file was replaced
+     * count how often the source file was replaced.
      *
-     * @return integer
+     * @return int
      */
     public function getReplacementCount()
     {

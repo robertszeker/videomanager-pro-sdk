@@ -1,6 +1,6 @@
 <?php
 
-namespace Mi\VideoManagerPro\SDK\Tests;
+namespace Mi\VideoManagerPro\SDK\tests;
 
 use GuzzleHttp\Client;
 use JMS\Serializer\Builder\CallbackDriverFactory;
@@ -50,8 +50,8 @@ class POCTest extends \PHPUnit_Framework_TestCase
      *
      * @return ServiceBuilder
      */
-    private function getServiceBuilder(OAuth2Interface $OAuth2Token) {
-
+    private function getServiceBuilder(OAuth2Interface $OAuth2Token)
+    {
         $client = new Client(['base_url' => 'https://api.video-cdn.net']);
 
         $factory = new ServiceFactory(new BaseServiceFactory($this->getSerializerBuilder()->build(), $client), $OAuth2Token);
@@ -68,7 +68,7 @@ class POCTest extends \PHPUnit_Framework_TestCase
     private function getPuliRepo()
     {
         $repo = new PathMappingRepository(new ArrayStore());
-        $repo->add('/mi/videomanager-pro-sdk', new DirectoryResource(__DIR__. '/../resources'));
+        $repo->add('/mi/videomanager-pro-sdk', new DirectoryResource(__DIR__.'/../resources'));
 
         return $repo;
     }
@@ -88,11 +88,11 @@ class POCTest extends \PHPUnit_Framework_TestCase
         );
 
         $serializer = SerializerBuilder::create();
-        $serializer->setMetadataDriverFactory(new CallbackDriverFactory(function() use ($driver) {
+        $serializer->setMetadataDriverFactory(new CallbackDriverFactory(function () use ($driver) {
             return $driver;
         }));
 
-        $serializer->configureListeners(function(EventDispatcher $dispatcher) {
+        $serializer->configureListeners(function (EventDispatcher $dispatcher) {
             $dispatcher->addListener('serializer.pre_deserialize', new FormatTimestampListener());
         });
 

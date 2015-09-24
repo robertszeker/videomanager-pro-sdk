@@ -13,7 +13,7 @@ class VideoList
     private $videos;
 
     /**
-     * @return integer
+     * @return int
      */
     public function getTotal()
     {
@@ -27,6 +27,4 @@ class VideoList
     {
         return $this->videos;
     }
-
-
 }

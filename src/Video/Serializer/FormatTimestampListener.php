@@ -17,7 +17,7 @@ class FormatTimestampListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            ['event' => 'serializer.pre_deserialize', 'method' => '__invoke']
+            ['event' => 'serializer.pre_deserialize', 'method' => '__invoke'],
         ];
     }
 

@@ -14,7 +14,7 @@ class ChannelTree
     private $children;
 
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -29,7 +29,6 @@ class ChannelTree
         return $this->name;
     }
 
-
     /**
      * @return ChannelTree[]
      */
@@ -37,6 +36,4 @@ class ChannelTree
     {
         return $this->children;
     }
-
-
 }

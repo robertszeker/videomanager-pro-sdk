@@ -17,7 +17,7 @@ class RefreshTokenData implements SubscriberInterface
     private $refreshToken;
 
     /**
-     * @param Description    $description
+     * @param Description     $description
      * @param OAuth2Interface $refreshToken
      */
     public function __construct(Description $description, OAuth2Interface $refreshToken)
@@ -36,7 +36,7 @@ class RefreshTokenData implements SubscriberInterface
 
     public function onPrepared(PreparedEvent $event)
     {
-        $command   = $event->getCommand();
+        $command = $event->getCommand();
         $operation = $this->description->getOperation($command->getName());
 
         if ($operation->getData('refresh-token-data') === true) {

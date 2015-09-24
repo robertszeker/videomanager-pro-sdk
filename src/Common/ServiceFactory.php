@@ -17,7 +17,7 @@ class ServiceFactory implements ServiceFactoryInterface
 
     /**
      * @param ServiceFactoryInterface $baseServiceFactory
-     * @param OAuth2Interface $oAuth2Token
+     * @param OAuth2Interface         $oAuth2Token
      */
     public function __construct(
         ServiceFactoryInterface $baseServiceFactory,

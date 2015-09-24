@@ -12,7 +12,7 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 class VideoService extends GuzzleClient
 {
     /**
-     * @param integer $videoManagerId
+     * @param int $videoManagerId
      *
      * @return \Mi\VideoManagerPro\SDK\Model\VideoList
      */
@@ -22,8 +22,8 @@ class VideoService extends GuzzleClient
     }
 
     /**
-     * @param integer $videoManagerId
-     * @param integer $videoId
+     * @param int $videoManagerId
+     * @param int $videoId
      *
      * @return \Mi\VideoManagerPro\SDK\Model\Video
      */
