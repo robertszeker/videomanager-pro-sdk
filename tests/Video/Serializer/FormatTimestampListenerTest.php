@@ -1,6 +1,6 @@
 <?php
 
-namespace Mi\VideoManagerPro\SDK\Tests\Video\Serializer;
+namespace Mi\VideoManagerPro\SDK\tests\Video\Serializer;
 
 use JMS\Serializer\EventDispatcher\PreDeserializeEvent;
 use Mi\VideoManagerPro\SDK\Model\Video;

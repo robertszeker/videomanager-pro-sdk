@@ -1,16 +1,14 @@
 <?php
 
-namespace Mi\VideoManagerPro\SDK\Tests\Common\Subscriber;
+namespace Mi\VideoManagerPro\SDK\tests\Common\Subscriber;
 
 use GuzzleHttp\Command\Command;
 use GuzzleHttp\Command\Event\PreparedEvent;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\Operation;
 use GuzzleHttp\Message\Request;
-use GuzzleHttp\Query;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\AccessTokenAuthentication;
 use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
-use Mi\VideoManagerPro\SDK\Common\Token\TokenInterface;
 
 /**
  * @author Alexander Miehe <alexander.miehe@movingimage.com>

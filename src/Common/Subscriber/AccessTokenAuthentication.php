@@ -16,7 +16,7 @@ class AccessTokenAuthentication implements SubscriberInterface
     private $accessToken;
 
     /**
-     * @param Description    $description
+     * @param Description     $description
      * @param OAuth2Interface $accessToken
      */
     public function __construct(Description $description, OAuth2Interface $accessToken)
@@ -35,11 +35,11 @@ class AccessTokenAuthentication implements SubscriberInterface
 
     public function onPrepared(PreparedEvent $event)
     {
-        $command   = $event->getCommand();
+        $command = $event->getCommand();
         $operation = $this->description->getOperation($command->getName());
 
         if ($operation->getData('access-token-auth') !== false) {
-            $event->getRequest()->addHeader('Authorization', 'Bearer ' .$this->accessToken->getAccessToken());
+            $event->getRequest()->addHeader('Authorization', 'Bearer '.$this->accessToken->getAccessToken());
         }
     }
 }

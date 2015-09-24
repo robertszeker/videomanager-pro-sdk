@@ -20,12 +20,12 @@ class OAuth2 implements OAuth2Interface
      */
     public function __construct($accessToken, $refreshToken)
     {
-        $this->accessToken  = $accessToken;
+        $this->accessToken = $accessToken;
         $this->refreshToken = $refreshToken;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getAccessToken()
     {
@@ -33,7 +33,7 @@ class OAuth2 implements OAuth2Interface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getRefreshToken()
     {

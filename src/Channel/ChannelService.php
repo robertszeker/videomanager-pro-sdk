@@ -12,7 +12,7 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 class ChannelService extends GuzzleClient
 {
     /**
-     * @param integer $videoManagerId
+     * @param int $videoManagerId
      *
      * @return \Mi\VideoManagerPro\SDK\Model\ChannelTree
      */
@@ -20,5 +20,4 @@ class ChannelService extends GuzzleClient
     {
         return $this->execute($this->getCommand('list', ['videoManagerId' => $videoManagerId]));
     }
-
 }
