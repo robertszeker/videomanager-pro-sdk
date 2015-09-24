@@ -9,6 +9,7 @@ use Mi\Guzzle\ServiceBuilder\ServiceFactoryInterface;
 use Mi\VideoManagerPro\SDK\Common\ServiceFactory;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\AccessTokenAuthentication;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\RefreshTokenData;
+use Mi\VideoManagerPro\SDK\Common\Subscriber\SetDuplicatedQueryParameterAggregator;
 use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
 use Prophecy\Argument;
 
@@ -37,6 +38,7 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 
         $emitter->attach(Argument::type(AccessTokenAuthentication::class))->shouldBeCalled();
         $emitter->attach(Argument::type(RefreshTokenData::class))->shouldBeCalled();
+        $emitter->attach(Argument::type(SetDuplicatedQueryParameterAggregator::class))->shouldBeCalled();
 
         $factoryConfig = ['class' => GuzzleClient::class, 'description' => ['baseUrl' => '/base']];
         $baseFactory->factory($factoryConfig)->willReturn($client->reveal());

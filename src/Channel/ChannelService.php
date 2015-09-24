@@ -5,7 +5,7 @@ namespace Mi\VideoManagerPro\SDK\Channel;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
 /**
- * @author Alexander Miehe <alexander.miehe@movingimage.com>
+ * @author Darling Patrick Ndongo <patrick.ndongo@movingimage.com>
  *
  * @codeCoverageIgnore
  */

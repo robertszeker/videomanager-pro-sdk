@@ -5,6 +5,7 @@ namespace Mi\VideoManagerPro\SDK\Common;
 use Mi\Guzzle\ServiceBuilder\ServiceFactoryInterface;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\AccessTokenAuthentication;
 use Mi\VideoManagerPro\SDK\Common\Subscriber\RefreshTokenData;
+use Mi\VideoManagerPro\SDK\Common\Subscriber\SetDuplicatedQueryParameterAggregator;
 use Mi\VideoManagerPro\SDK\Common\Token\OAuth2Interface;
 
 /**
@@ -38,6 +39,9 @@ class ServiceFactory implements ServiceFactoryInterface
         );
         $service->getEmitter()->attach(
             new RefreshTokenData($service->getDescription(), $this->oAuth2Token)
+        );
+        $service->getEmitter()->attach(
+            new SetDuplicatedQueryParameterAggregator($service->getDescription())
         );
 
         return $service;
