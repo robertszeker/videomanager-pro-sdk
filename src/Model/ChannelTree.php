@@ -3,7 +3,7 @@
 namespace Mi\VideoManagerPro\SDK\Model;
 
 /**
- * @author Patman <alexander.miehe@movingimage.com>
+ * @author Darling Patrick Ndongo <patrick.ndongo@movingimage.com>
  *
  * @codeCoverageIgnore
  */

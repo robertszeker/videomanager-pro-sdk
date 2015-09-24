@@ -12,13 +12,21 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 class VideoService extends GuzzleClient
 {
     /**
-     * @param int $videoManagerId
+     * @param int   $videoManagerId
+     * @param int   $offset
+     * @param int   $limit
+     * @param array $optionalParameter
      *
      * @return \Mi\VideoManagerPro\SDK\Model\VideoList
      */
-    public function getAllVideos($videoManagerId)
+    public function getVideoList($videoManagerId, $offset = 0, $limit = 99999999, array $optionalParameter = [])
     {
-        return $this->execute($this->getCommand('list', ['videoManagerId' => $videoManagerId,'limit' => 99999999]));
+        $parameters = array_merge(
+            $optionalParameter,
+            ['videoManagerId' => $videoManagerId, 'offset' => $offset, 'limit' => $limit]
+        );
+
+        return $this->execute($this->getCommand('list', $parameters));
     }
 
     /**
@@ -29,6 +37,6 @@ class VideoService extends GuzzleClient
      */
     public function getVideo($videoManagerId, $videoId)
     {
-        return $this->execute($this->getCommand('get', ['videoManagerId' => $videoManagerId,'videoId' => $videoId]));
+        return $this->execute($this->getCommand('get', ['videoManagerId' => $videoManagerId, 'videoId' => $videoId]));
     }
 }

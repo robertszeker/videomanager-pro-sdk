@@ -12,10 +12,13 @@
           "location": "uri",
           "required": true
         },
-        "channelId": {
+        "channelIds": {
           "location": "query",
+          "type" : "array",
           "sentAs": "channel_id",
-          "type" : "integer"
+          "items":  {
+            "type" : "integer"
+          }
         },
         "offset": {
           "location": "query",
@@ -54,7 +57,8 @@
       },
       "responseModel": "Videos",
       "data": {
-        "access-token-auth": true
+        "access-token-auth": true,
+        "allow-duplicated-query-params": true
       }
     },
     "get": {
