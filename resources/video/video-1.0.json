@@ -43,11 +43,30 @@
           "default" : "created_date"
         },
         "includeCustomMetadata" : {
-          "type" : "string",
+          "type" : "boolean",
           "location": "query",
           "sentAs": "include_custom_metadata",
-          "default" : "false",
-          "enum" : ["true", "false"]
+          "default" : false,
+          "enum" : [true, false],
+          "filters" : [
+            {
+              "method" : "var_export",
+              "args": ["@value", true]
+            }
+          ]
+        },
+        "includeSubChannels" : {
+          "type" : "boolean",
+          "location": "query",
+          "sentAs": "include_sub_channels",
+          "default" : true,
+          "enum" : [true, false],
+          "filters" : [
+            {
+              "method" : "var_export",
+              "args": ["@value", true]
+            }
+          ]
         },
         "Content-Type": {
           "location" : "header",
