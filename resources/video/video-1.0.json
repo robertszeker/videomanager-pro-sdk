@@ -48,12 +48,7 @@
           "sentAs": "include_custom_metadata",
           "default" : false,
           "enum" : [true, false],
-          "filters" : [
-            {
-              "method" : "var_export",
-              "args": ["@value", true]
-            }
-          ]
+          "format" : "boolean-string"
         },
         "includeSubChannels" : {
           "type" : "boolean",
@@ -61,12 +56,7 @@
           "sentAs": "include_sub_channels",
           "default" : true,
           "enum" : [true, false],
-          "filters" : [
-            {
-              "method" : "var_export",
-              "args": ["@value", true]
-            }
-          ]
+          "format" : "boolean-string"
         },
         "Content-Type": {
           "location" : "header",
