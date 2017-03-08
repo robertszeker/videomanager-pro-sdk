@@ -13,6 +13,16 @@ class VideoManager
     private $name;
 
     /**
+     * @param string $name
+     * @param int    $id
+     */
+    public function __construct($name, $id)
+    {
+        $this->name = $name;
+        $this->id = $id;
+    }
+
+    /**
      * @return int
      */
     public function getId()
